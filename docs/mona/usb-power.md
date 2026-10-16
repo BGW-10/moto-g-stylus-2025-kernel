@@ -47,6 +47,11 @@ capacitance, load steps, and startup sequence again after inserting the board.
 
 ## Hardware candidates
 
+For AliExpress shopping leads, smaller budget boards, and integrating a GX12
+connector into a printed rear cover, see the [hardware buying and layout guide](hardware.md).
+It also covers the limited startup margin of 4 V boards and rejects common
+5 V-minimum modules for the battery rail.
+
 These are manufacturer-documented candidates, not tested Mona accessories.
 Choose one after establishing peak current and minimum startup voltage.
 
@@ -56,8 +61,10 @@ Choose one after establishing peak current and minimum startup voltage.
 | [Adafruit #6359 LM73100 breakout](https://www.adafruit.com/product/6359) | Convenient terminal blocks; about 3–23 V board operating range; up to 5 A; reverse-current blocking and current-monitor output. | Roughly 30 milliohms means approximately 0.15 V drop and 0.75 W at 5 A. Check thermal behavior and transient peaks; 5 A is a ceiling to qualify, not spare capacity. |
 | [TI TPS25947EVM / TPS25947](https://www.ti.com/product/TPS25947) | Evaluation platform for a reverse-blocking eFuse with configurable protection; 2.7–23 V family, up to 5.5 A. | More configuration work. Review the fitted variant, UVLO/OVP, current limit, and startup settings before using it near 4.2 V. Input protection does not regulate externally driven output voltage. |
 
-My first low-loss candidate for the currently observed supply is Pololu #5388,
-provided it starts reliably at the lowest actual buck voltage. Adafruit #6359
+Pololu #5388 remains a low-loss candidate for the currently observed supply;
+the smaller #5383 is the [compact prototype preference](hardware.md#small-inexpensive-alternatives-with-manufacturer-documentation)
+for the planned cover. Either requires reliable startup at the lowest actual
+buck voltage. Adafruit #6359
 is convenient for a prototype with measured current comfortably within its
 rating, but its voltage drop matters on a battery rail. These recommendations
 are engineering judgments based on the published specifications.

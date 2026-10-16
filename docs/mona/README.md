@@ -13,6 +13,7 @@ before merging back into `mona-android16`.
 | --- | --- |
 | [Appliance investigation](appliance.md) | Start here: live phone observations, XL4015 supply requirements, performance, cooling, and service lifecycle. |
 | [USB-C power protection](usb-power.md) | Reverse-current-blocking hardware candidates, charging-disable software, and electrical qualification. |
+| [Budget hardware and printed cover](hardware.md) | AliExpress ideal-diode leads, compact alternatives, GX12 power wiring, and rear-cover layout. |
 | [Manual fake SOC](fake-soc.md) | Kernel configuration, additional debug controls, module deployment, and manual enable/restore commands. |
 | [Building the kernel](building.md) | Toolchain setup, configuration merging, base Image build, and boot-image preparation. |
 
