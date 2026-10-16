@@ -1,13 +1,17 @@
 # Moto G Stylus 5G (2025) kernel
 
-Device: **Mona**, Android 16. Start with the [Mona documentation](docs/mona/README.md)
-for build instructions, manual fake SOC, appliance operation, and USB-C power
-protection. The guides distinguish completed validation from deployment and
-hardware tests that remain pending.
+Device: **Mona**, Android 16. The appliance guides are maintained in
+[`klipper-android-appliance-scripts`](https://github.com/BGW-10/klipper-android-appliance-scripts/tree/mona-appliance/docs).
+The kernel review branch is `mona-appliance`, based on `mona-android16`.
+
+- [Mona setup, power, and operation](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/README.md)
+- [Kernel configuration, build, and boot-image preparation](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/kernel.md)
+- [Manual fake SOC and debug-option tradeoffs](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/fake-soc.md)
+- [Validation record and pending tests](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/validation.md)
 
 **AI usage:** The Mona appliance configuration changes and accompanying guides
 were developed with AI assistance, including OpenAI Codex. See
-[validation and remaining work](docs/mona/README.md#validation-and-remaining-work).
+[sources and validation](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/reference/sources.md#ai-usage).
 
 # How do I submit patches to Android Common Kernels
 
