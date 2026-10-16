@@ -47,42 +47,17 @@ capacitance, load steps, and startup sequence again after inserting the board.
 
 ## Hardware candidates
 
-For AliExpress shopping leads, smaller budget boards, and integrating a GX12
-connector into a printed rear cover, see the [hardware buying and layout guide](hardware.md).
-It also covers the limited startup margin of 4 V boards and rejects common
-5 V-minimum modules for the battery rail.
+Use the [ranked module types and search terms](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/hardware.md#ranked-module-types-and-search-terms)
+and [required specifications](https://github.com/BGW-10/klipper-android-appliance-scripts/blob/mona-appliance/docs/devices/mona/hardware.md#specifications-to-require)
+in the appliance hardware guide. It also covers GX12 wiring and the printed
+rear cover. The ranking favors documented low-loss boards that can start at
+the actual battery-rail voltage; a 5 V-minimum module is unsuitable here.
 
-These are manufacturer-documented candidates, not tested Mona accessories.
-Choose one after establishing peak current and minimum startup voltage.
-
-| Candidate | Useful features | Important tradeoff |
-| --- | --- | --- |
-| [Pololu #5388 ideal diode, 4–60 V](https://www.pololu.com/product/5388) | Explicit reverse-current blocking; low-resistance external MOSFET, specified below 3 milliohms; manufacturer rates the board around 20 A continuous. | Needs at least 4 V to start, though it can operate down to 3.2 V afterward. At the observed roughly 4.17 V supply, startup margin needs measurement. It does not supply a battery-rail voltage clamp or a new current limit. |
-| [Adafruit #6359 LM73100 breakout](https://www.adafruit.com/product/6359) | Convenient terminal blocks; about 3–23 V board operating range; up to 5 A; reverse-current blocking and current-monitor output. | Roughly 30 milliohms means approximately 0.15 V drop and 0.75 W at 5 A. Check thermal behavior and transient peaks; 5 A is a ceiling to qualify, not spare capacity. |
-| [TI TPS25947EVM / TPS25947](https://www.ti.com/product/TPS25947) | Evaluation platform for a reverse-blocking eFuse with configurable protection; 2.7–23 V family, up to 5.5 A. | More configuration work. Review the fitted variant, UVLO/OVP, current limit, and startup settings before using it near 4.2 V. Input protection does not regulate externally driven output voltage. |
-
-Pololu #5388 remains a low-loss candidate for the currently observed supply;
-the smaller #5383 is the [compact prototype preference](hardware.md#small-inexpensive-alternatives-with-manufacturer-documentation)
-for the planned cover. Either requires reliable startup at the lowest actual
-buck voltage. Adafruit #6359
-is convenient for a prototype with measured current comfortably within its
-rating, but its voltage drop matters on a battery rail. These recommendations
-are engineering judgments based on the published specifications.
-
-Do not substitute a similarly named **reverse-polarity-only** protector. For
-example, Pololu also sells versions that intentionally allow current to flow
-back to the supply; order the exact reverse-current-blocking version. A simple
-Schottky diode is possible but introduces a larger load-dependent voltage drop
-and heat. Do not compensate by blindly increasing the buck setting: verify
-phone-side voltage at idle, full load, and load removal.
-
-For the LM73100, [Adafruit documents IN, OUT, GND, and monitor pins](https://learn.adafruit.com/adafruit-lm73100-ideal-diode-breakout/pinouts).
-No header/breadboard current rating is implied by the chip rating; use suitable
-power connections. Its IMON output is not by itself a calibrated reverse-current
-detector. Check actual reverse current with an appropriate bidirectional
-measurement setup, including input-off and hot-plug cases. Real devices have
-leakage and finite switching response; do not assume mathematically zero
-current at every instant.
+Require explicit output-to-input reverse-current blocking, including with the
+input unpowered. Reverse-polarity protection alone is insufficient. Measure
+reverse current during startup, input-off, and USB attachment tests; real
+blockers have leakage and a finite turn-off response. Choose the current rating
+after measuring the phone's peaks and checking heat inside the cover.
 
 ## Choose the USB connection for its role
 
