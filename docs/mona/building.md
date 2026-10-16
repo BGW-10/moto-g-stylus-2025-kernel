@@ -1,5 +1,7 @@
 # Building this kernel for the Moto G Stylus 2025
 
+[Mona documentation](README.md)
+
 This guide builds the **base kernel `Image`** from the `mona-android16` checkout
 with Parrot/Mona settings. It then shows how to replace the kernel in a copy
 of the phone's matching stock `boot.img`. It does not rebuild vendor modules,
@@ -84,7 +86,12 @@ fails, inspect `prebuilts/clang/host/linux-x86/` before continuing.
 
 Motorola's `perf` config order is `gki_defconfig`, `vendor/parrot_perf.config`,
 then a fragment containing `moto-parrot.config`, `moto-parrot-mona.config`,
-and `moto-parrot-perf.config`. The commands below reproduce that order.
+and `moto-parrot-perf.config`. Motorola's published Parrot recipe concatenates
+the three Motorola files before invoking Bazel. The commands below use that
+order and resolve it with `olddefconfig`. Bazel may apply further build
+settings, so this does not establish an identical final `.config`. If you
+later obtain a complete Mona Bazel workspace, compare its `.config` with
+`$KERNEL_OUT/.config`.
 
 Edit `arch/arm64/configs/vendor/ext_config/moto-parrot-mona.config` in this
 repository. Keep its existing settings and add built-in drivers as
@@ -207,10 +214,11 @@ for that release as well.
 ## 5. Where Motorola's separate build tasks fit
 
 [Motorola's Parrot recipe](https://github.com/MotorolaMobilityLLC/readme/blob/master/W1VT36H.22-20.txt)
-builds the kernel distribution, device trees, Qualcomm modules, and Motorola
-modules in separate tasks. The `make ... Image` path above performs only the
-base kernel build. It merges the same config fragments without requiring the
-vendor DT tree or Bazel product files absent from this checkout.
+uses `portov` as its example product and builds the kernel distribution,
+device trees, Qualcomm modules, and Motorola modules in separate tasks. The
+`make ... Image` path above selects Mona and performs only the base kernel
+build. It uses the listed config fragments without requiring the vendor DT
+tree or Bazel product files absent from this checkout.
 
 Use vendor and Motorola modules from the **same stock firmware** as the boot
 image. Kernel interface changes can break those modules even when `Image`

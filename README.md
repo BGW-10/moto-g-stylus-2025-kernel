@@ -1,3 +1,10 @@
+# Moto G Stylus 5G (2025) kernel
+
+Device: **Mona**, Android 16. Start with the [Mona documentation](docs/mona/README.md)
+for build instructions, manual fake SOC, appliance operation, and USB-C power
+protection. The guides distinguish completed validation from deployment and
+hardware tests that remain pending.
+
 # How do I submit patches to Android Common Kernels
 
 1. BEST: Make all of your changes to upstream Linux. If appropriate, backport to the stable releases.
