@@ -7,6 +7,10 @@ Guides for the Motorola Moto G Stylus 5G (2025), codename `mona`, using the
 The `mona-appliance` branch collects these changes for testing and refinement
 before merging back into `mona-android16`.
 
+**AI usage:** These guides, hardware recommendations, and Mona appliance
+configuration changes were developed with AI assistance, including OpenAI
+Codex. See [validation and remaining work](#validation-and-remaining-work).
+
 ## Guides
 
 | Guide | Contents |
